@@ -1,20 +1,227 @@
-const button = document.getElementById("startBtn");
+/* ================================
+   WEB 2 — FOR MY BACHAaaaa ❤️
+   ================================ */
 
-button.addEventListener("click", () => {
+const startBtn = document.getElementById("startBtn");
+const opening = document.getElementById("opening");
+const mainContent = document.getElementById("mainContent");
 
-    button.innerHTML = "❤️ I Love You Bachaaaaa ❤️";
+startBtn.addEventListener("click", () => {
 
-    document.body.style.background =
-        "linear-gradient(135deg,#ff4f93,#8a2be2,#111)";
+    /* Change button */
+    startBtn.innerHTML = "Opening your heart... ❤️";
 
-    alert(
-`Happy Birthday, My Bachaaaaa ❤️
+    startBtn.disabled = true;
 
-This is only the beginning...
+    /* Small pause for the effect */
+    setTimeout(() => {
 
-I made this entire website just for you.
+        /* Hide opening screen */
+        opening.style.opacity = "0";
+        opening.style.transform = "scale(1.05)";
 
-- Yours ❤️`
-);
+        setTimeout(() => {
+
+            opening.style.display = "none";
+
+            /* Show main website */
+            mainContent.classList.remove("hidden");
+
+            mainContent.style.opacity = "0";
+            mainContent.style.transform = "translateY(20px)";
+
+            requestAnimationFrame(() => {
+
+                mainContent.style.transition =
+                    "opacity 1.2s ease, transform 1.2s ease";
+
+                mainContent.style.opacity = "1";
+                mainContent.style.transform = "translateY(0)";
+
+            });
+
+            /* Scroll to the beginning */
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+            /* Start celebration */
+            createHearts();
+
+        }, 900);
+
+    }, 700);
 
 });
+
+
+/* ================================
+   EXTRA FLOATING HEARTS
+   ================================ */
+
+function createHearts() {
+
+    for (let i = 0; i < 18; i++) {
+
+        setTimeout(() => {
+
+            const heart = document.createElement("div");
+
+            heart.innerHTML = ["❤️", "💗", "💕", "💖", "💞"][
+                Math.floor(Math.random() * 5)
+            ];
+
+            heart.style.position = "fixed";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.bottom = "-40px";
+            heart.style.fontSize =
+                (16 + Math.random() * 24) + "px";
+
+            heart.style.pointerEvents = "none";
+            heart.style.zIndex = "20";
+
+            document.body.appendChild(heart);
+
+            const duration =
+                3500 + Math.random() * 3000;
+
+            heart.animate(
+                [
+                    {
+                        transform: "translateY(0) rotate(0deg)",
+                        opacity: 0
+                    },
+                    {
+                        transform:
+                            `translateY(-50vh) rotate(20deg)`,
+                        opacity: 1
+                    },
+                    {
+                        transform:
+                            `translateY(-110vh) rotate(-20deg)`,
+                        opacity: 0
+                    }
+                ],
+                {
+                    duration: duration,
+                    easing: "ease-out"
+                }
+            );
+
+            setTimeout(() => {
+                heart.remove();
+            }, duration);
+
+        }, i * 180);
+
+    }
+
+}
+
+
+/* ================================
+   SCROLL REVEAL
+   ================================ */
+
+const sections = document.querySelectorAll(
+    ".story, .letter, .reasons, .final"
+);
+
+const observer = new IntersectionObserver(
+    (entries) => {
+
+        entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+
+                entry.target.style.opacity = "1";
+                entry.target.style.transform =
+                    "translateY(0)";
+
+            }
+
+        });
+
+    },
+    {
+        threshold: 0.15
+    }
+);
+
+
+sections.forEach((section) => {
+
+    section.style.opacity = "0";
+
+    section.style.transform =
+        "translateY(40px)";
+
+    section.style.transition =
+        "opacity 1s ease, transform 1s ease";
+
+    observer.observe(section);
+
+});
+
+
+/* ================================
+   CLICK HEART EFFECT
+   ================================ */
+
+document.addEventListener("click", (event) => {
+
+    if (
+        event.target.tagName === "BUTTON" ||
+        event.target.closest("button")
+    ) {
+        return;
+    }
+
+    const heart = document.createElement("span");
+
+    heart.innerHTML = "❤️";
+
+    heart.style.position = "fixed";
+    heart.style.left = event.clientX + "px";
+    heart.style.top = event.clientY + "px";
+
+    heart.style.pointerEvents = "none";
+    heart.style.zIndex = "999";
+
+    heart.style.fontSize = "20px";
+
+    document.body.appendChild(heart);
+
+    heart.animate(
+        [
+            {
+                transform: "translate(-50%, -50%) scale(.5)",
+                opacity: 1
+            },
+            {
+                transform:
+                    "translate(-50%, -120px) scale(1.4)",
+                opacity: 0
+            }
+        ],
+        {
+            duration: 900,
+            easing: "ease-out"
+        }
+    );
+
+    setTimeout(() => {
+        heart.remove();
+    }, 900);
+
+});
+
+
+/* ================================
+   CONSOLE MESSAGE ❤️
+   ================================ */
+
+console.log(
+    "Made with love for my Bachaaaaa ❤️"
+);
