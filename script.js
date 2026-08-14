@@ -225,3 +225,66 @@ document.addEventListener("click", (event) => {
 console.log(
     "Made with love for my Bachaaaaa ❤️"
 );
+/* ================================
+   BIRTHDAY COUNTDOWN 🎂
+   30 AUGUST 2026 — 12:00 AM IST
+   ================================ */
+
+const birthdayTarget = new Date("2026-08-30T00:00:00+05:30").getTime();
+
+const countdownDays = document.getElementById("countdownDays");
+const countdownHours = document.getElementById("countdownHours");
+const countdownMinutes = document.getElementById("countdownMinutes");
+const countdownSeconds = document.getElementById("countdownSeconds");
+
+function updateBirthdayCountdown() {
+
+    const now = new Date().getTime();
+    const difference = birthdayTarget - now;
+
+    /* Birthday has arrived 🎂 */
+    if (difference <= 0) {
+
+        countdownDays.textContent = "00";
+        countdownHours.textContent = "00";
+        countdownMinutes.textContent = "00";
+        countdownSeconds.textContent = "00";
+
+        return;
+    }
+
+    const days = Math.floor(
+        difference / (1000 * 60 * 60 * 24)
+    );
+
+    const hours = Math.floor(
+        (difference / (1000 * 60 * 60)) % 24
+    );
+
+    const minutes = Math.floor(
+        (difference / (1000 * 60)) % 60
+    );
+
+    const seconds = Math.floor(
+        (difference / 1000) % 60
+    );
+
+    countdownDays.textContent =
+        String(days).padStart(2, "0");
+
+    countdownHours.textContent =
+        String(hours).padStart(2, "0");
+
+    countdownMinutes.textContent =
+        String(minutes).padStart(2, "0");
+
+    countdownSeconds.textContent =
+        String(seconds).padStart(2, "0");
+}
+
+
+/* Update immediately */
+updateBirthdayCountdown();
+
+/* Update every second */
+setInterval(updateBirthdayCountdown, 1000);
