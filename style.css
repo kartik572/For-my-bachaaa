@@ -230,6 +230,72 @@ button {
 
 button:hover {
     transform: translateY(-4px) scale(1.04);
+   /* ================================
+   MIDNIGHT FIREWORKS 🎆
+   ================================ */
+
+.firework {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.firework-particle {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+    background: #ffd6e7;
+
+    box-shadow:
+        0 0 8px #fff,
+        0 0 16px #ff8fbd;
+
+    animation: fireworkExplosion 1.6s ease-out forwards;
+}
+
+@keyframes fireworkExplosion {
+
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translate(var(--x), var(--y))
+            scale(0);
+
+        opacity: 0;
+    }
+}
+
+
+/* Countdown disappears beautifully */
+
+#birthdayCountdown {
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+
+/* Extra birthday glow */
+
+.birthday-countdown {
+    position: relative;
+    z-index: 5;
+}
 
     box-shadow:
         0 15px 45px rgba(255, 55, 140, .55);
