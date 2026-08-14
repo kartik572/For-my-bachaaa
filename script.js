@@ -805,3 +805,22 @@ function startBirthdayCelebration() {
 
     }
 }
+// OPEN MY HEART BUTTON ❤️
+
+const openHeartButton = document.getElementById("startBtn");
+const openingScreen = document.getElementById("opening");
+const mainWebsite = document.getElementById("mainContent");
+
+if (openHeartButton) {
+    openHeartButton.addEventListener("click", function () {
+
+        openingScreen.classList.add("hidden");
+        mainWebsite.classList.remove("hidden");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    });
+}
