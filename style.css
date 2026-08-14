@@ -747,3 +747,117 @@ button:active {
     }
 
 }
+/* =================================
+   BIRTHDAY COUNTDOWN 🎂❤️
+   ================================= */
+
+.countdown-section {
+    text-align: center;
+    padding: 80px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.countdown-title {
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.countdown-section h2 {
+    font-size: 38px;
+    margin-bottom: 35px;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.countdown-box {
+    min-width: 85px;
+    padding: 18px 12px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.75);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(10px);
+}
+
+.countdown-number {
+    display: block;
+    font-size: 34px;
+    font-weight: bold;
+}
+
+.countdown-label {
+    display: block;
+    margin-top: 5px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.countdown-message {
+    margin-top: 30px;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* =================================
+   MIDNIGHT CELEBRATION 🎆
+   ================================= */
+
+.celebration {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.firework {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    animation: firework 1.5s ease-out forwards;
+}
+
+@keyframes firework {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(
+            calc((var(--x) - 50) * 1vw),
+            calc((var(--y) - 50) * 1vh)
+        ) scale(0);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .countdown-section h2 {
+        font-size: 30px;
+    }
+
+    .countdown {
+        gap: 8px;
+    }
+
+    .countdown-box {
+        min-width: 70px;
+        padding: 14px 8px;
+    }
+
+    .countdown-number {
+        font-size: 27px;
+    }
+}
