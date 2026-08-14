@@ -1,31 +1,21 @@
-/* =========================================
+/* =========================================================
    💗 WEB 2 — FOR MY BACHAaaaa
-   CLEAN JAVASCRIPT
-   ========================================= */
+   PREMIUM JAVASCRIPT
+   ========================================================= */
 
 
-/* =========================================
+/* =========================================================
    ELEMENTS
-   ========================================= */
+   ========================================================= */
 
 const startBtn = document.getElementById("startBtn");
 const opening = document.getElementById("opening");
 const mainContent = document.getElementById("mainContent");
 
 
-/* =========================================
+/* =========================================================
    🎵 BACKGROUND MUSIC
-   ========================================= */
-
-/*
-   IMPORTANT:
-   The file must be named exactly:
-
-   a-fool-for-you.mp3
-
-   and must be in the same GitHub folder
-   as index.html.
-*/
+   ========================================================= */
 
 const birthdayMusic = new Audio("a-fool-for-you.mp3");
 
@@ -35,21 +25,16 @@ birthdayMusic.volume = 0.75;
 let musicStarted = false;
 
 
-/* =========================================
-   ❤️ OPEN MY HEART
-   ========================================= */
+/* =========================================================
+   🎵 MUSIC BUTTON
+   ========================================================= */
 
-if (startBtn) {
+const musicToggle =
+    document.getElementById("musicToggle");
 
-    startBtn.addEventListener("click", function () {
+if (musicToggle) {
 
-        /*
-           START MUSIC IMMEDIATELY.
-
-           This is intentionally inside the
-           button click so iPhone/iPad browsers
-           allow the audio to start.
-        */
+    musicToggle.addEventListener("click", () => {
 
         if (!musicStarted) {
 
@@ -57,6 +42,62 @@ if (startBtn) {
                 .then(() => {
 
                     musicStarted = true;
+
+                    musicToggle.textContent = "🔊";
+
+                })
+                .catch((error) => {
+
+                    console.log(
+                        "Music could not start:",
+                        error
+                    );
+
+                });
+
+            return;
+        }
+
+
+        if (birthdayMusic.paused) {
+
+            birthdayMusic.play();
+
+            musicToggle.textContent = "🔊";
+
+        } else {
+
+            birthdayMusic.pause();
+
+            musicToggle.textContent = "🔇";
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   ❤️ OPEN MY HEART
+   ========================================================= */
+
+if (startBtn) {
+
+    startBtn.addEventListener("click", function () {
+
+        /* Start music from user interaction */
+
+        if (!musicStarted) {
+
+            birthdayMusic.play()
+                .then(() => {
+
+                    musicStarted = true;
+
+                    if (musicToggle) {
+                        musicToggle.textContent = "🔊";
+                    }
 
                     console.log(
                         "🎵 Music started for my Bachaaaaa ❤️"
@@ -75,15 +116,11 @@ if (startBtn) {
         }
 
 
-        /* Button animation */
-
         startBtn.innerHTML =
             "Opening your heart... ❤️";
 
         startBtn.disabled = true;
 
-
-        /* Opening screen animation */
 
         opening.style.transition =
             "opacity 1s ease, transform 1s ease";
@@ -98,8 +135,6 @@ if (startBtn) {
 
             opening.style.display = "none";
 
-
-            /* Show main website */
 
             mainContent.classList.remove("hidden");
 
@@ -128,8 +163,6 @@ if (startBtn) {
             });
 
 
-            /* Celebration hearts */
-
             createHearts();
 
         }, 950);
@@ -139,9 +172,9 @@ if (startBtn) {
 }
 
 
-/* =========================================
+/* =========================================================
    💕 FLOATING HEARTS
-   ========================================= */
+   ========================================================= */
 
 function createHearts() {
 
@@ -160,7 +193,8 @@ function createHearts() {
                 "💞"
             ];
 
-            heart.innerHTML =
+
+            heart.textContent =
                 heartTypes[
                     Math.floor(
                         Math.random() *
@@ -183,10 +217,13 @@ function createHearts() {
             heart.style.pointerEvents =
                 "none";
 
-            heart.style.zIndex = "999";
+            heart.style.zIndex =
+                "999";
 
 
-            document.body.appendChild(heart);
+            document.body.appendChild(
+                heart
+            );
 
 
             const duration =
@@ -194,44 +231,52 @@ function createHearts() {
                 Math.random() * 3000;
 
 
-            heart.animate(
+            const animation =
+                heart.animate(
 
-                [
+                    [
+                        {
+                            transform:
+                                "translateY(0) rotate(0deg)",
+
+                            opacity: 0
+                        },
+
+                        {
+                            transform:
+                                "translateY(-50vh) rotate(20deg)",
+
+                            opacity: 1
+                        },
+
+                        {
+                            transform:
+                                "translateY(-110vh) rotate(-20deg)",
+
+                            opacity: 0
+                        }
+                    ],
+
                     {
-                        transform:
-                            "translateY(0) rotate(0deg)",
+                        duration: duration,
 
-                        opacity: 0
-                    },
-
-                    {
-                        transform:
-                            "translateY(-50vh) rotate(20deg)",
-
-                        opacity: 1
-                    },
-
-                    {
-                        transform:
-                            "translateY(-110vh) rotate(-20deg)",
-
-                        opacity: 0
+                        easing: "ease-out"
                     }
-                ],
 
-                {
-                    duration: duration,
-                    easing: "ease-out"
-                }
-
-            );
+                );
 
 
-            setTimeout(() => {
+            animation.finished
+                .then(() => {
 
-                heart.remove();
+                    heart.remove();
 
-            }, duration);
+                })
+                .catch(() => {
+
+                    heart.remove();
+
+                });
 
 
         }, i * 180);
@@ -241,17 +286,17 @@ function createHearts() {
 }
 
 
-/* =========================================
+/* =========================================================
    ✨ SCROLL REVEAL
-   ========================================= */
+   ========================================================= */
 
 const sections =
     document.querySelectorAll(
-        ".story, .letter, .reasons, .memories, .final"
+        ".story, .letter, .reasons, .memories, .memory-video, .final"
     );
 
 
-const observer =
+const sectionObserver =
     new IntersectionObserver(
 
         (entries) => {
@@ -265,6 +310,10 @@ const observer =
 
                     entry.target.style.transform =
                         "translateY(0)";
+
+                    sectionObserver.unobserve(
+                        entry.target
+                    );
 
                 }
 
@@ -289,14 +338,14 @@ sections.forEach((section) => {
     section.style.transition =
         "opacity 1s ease, transform 1s ease";
 
-    observer.observe(section);
+    sectionObserver.observe(section);
 
 });
 
 
-/* =========================================
-   📸 MEMORY CARD ANIMATION
-   ========================================= */
+/* =========================================================
+   📸 MEMORY CARDS
+   ========================================================= */
 
 const memoryCards =
     document.querySelectorAll(
@@ -346,7 +395,7 @@ const memoryObserver =
         },
 
         {
-            threshold: 0.15
+            threshold: 0.12
         }
 
     );
@@ -359,22 +408,514 @@ memoryCards.forEach((card) => {
 });
 
 
-/* =========================================
+/* =========================================================
+   📸 FULL SCREEN PHOTO GALLERY
+   ========================================================= */
+
+const photoViewer =
+    document.getElementById(
+        "photoViewer"
+    );
+
+const viewerImage =
+    document.getElementById(
+        "viewerImage"
+    );
+
+const viewerClose =
+    document.getElementById(
+        "viewerClose"
+    );
+
+const viewerPrev =
+    document.getElementById(
+        "viewerPrev"
+    );
+
+const viewerNext =
+    document.getElementById(
+        "viewerNext"
+    );
+
+const viewerCounter =
+    document.getElementById(
+        "viewerCounter"
+    );
+
+const viewerText =
+    document.getElementById(
+        "viewerText"
+    );
+
+
+const memoryButtons =
+    document.querySelectorAll(
+        ".memory-open"
+    );
+
+
+let currentPhoto = 0;
+
+
+/* =========================================================
+   PHOTO DATA
+   ========================================================= */
+
+const memories = Array.from(
+    memoryCards
+).map((card, index) => {
+
+    const image =
+        card.querySelector("img");
+
+    return {
+
+        src:
+            image
+                ? image.getAttribute("src")
+                : `photo_${String(index + 1).padStart(2, "0")}.jpeg`,
+
+        alt:
+            image
+                ? image.getAttribute("alt")
+                : `Our memory ${index + 1}`,
+
+        caption:
+            card.getAttribute(
+                "data-caption"
+            ) ||
+            (
+                card.querySelector("p")
+                    ? card.querySelector("p").textContent.trim()
+                    : "A beautiful memory. ❤️"
+            )
+
+    };
+
+});
+
+
+/* =========================================================
+   OPEN PHOTO
+   ========================================================= */
+
+function openPhoto(index) {
+
+    if (
+        !photoViewer ||
+        !viewerImage ||
+        memories.length === 0
+    ) {
+
+        return;
+
+    }
+
+
+    currentPhoto =
+        (index + memories.length) %
+        memories.length;
+
+
+    const memory =
+        memories[currentPhoto];
+
+
+    viewerImage.src =
+        memory.src;
+
+    viewerImage.alt =
+        memory.alt;
+
+
+    if (viewerText) {
+
+        viewerText.textContent =
+            memory.caption;
+
+    }
+
+
+    if (viewerCounter) {
+
+        viewerCounter.textContent =
+            `${String(currentPhoto + 1).padStart(2, "0")} / ${memories.length}`;
+
+    }
+
+
+    photoViewer.classList.add(
+        "active"
+    );
+
+    photoViewer.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+/* =========================================================
+   CLOSE PHOTO
+   ========================================================= */
+
+function closePhoto() {
+
+    if (!photoViewer) {
+        return;
+    }
+
+
+    photoViewer.classList.remove(
+        "active"
+    );
+
+    photoViewer.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+/* =========================================================
+   NEXT PHOTO
+   ========================================================= */
+
+function nextPhoto() {
+
+    openPhoto(
+        currentPhoto + 1
+    );
+
+}
+
+
+/* =========================================================
+   PREVIOUS PHOTO
+   ========================================================= */
+
+function previousPhoto() {
+
+    openPhoto(
+        currentPhoto - 1
+    );
+
+}
+
+
+/* =========================================================
+   PHOTO BUTTON EVENTS
+   ========================================================= */
+
+memoryButtons.forEach(
+    (button, index) => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                openPhoto(index);
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   VIEWER BUTTONS
+   ========================================================= */
+
+if (viewerClose) {
+
+    viewerClose.addEventListener(
+        "click",
+        closePhoto
+    );
+
+}
+
+
+if (viewerNext) {
+
+    viewerNext.addEventListener(
+        "click",
+        nextPhoto
+    );
+
+}
+
+
+if (viewerPrev) {
+
+    viewerPrev.addEventListener(
+        "click",
+        previousPhoto
+    );
+
+}
+
+
+/* =========================================================
+   CLICK OUTSIDE PHOTO = CLOSE
+   ========================================================= */
+
+if (photoViewer) {
+
+    photoViewer.addEventListener(
+        "click",
+        (event) => {
+
+            if (
+                event.target ===
+                photoViewer
+            ) {
+
+                closePhoto();
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   ⌨️ KEYBOARD CONTROLS
+   ========================================================= */
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (
+            !photoViewer ||
+            !photoViewer.classList.contains("active")
+        ) {
+
+            return;
+
+        }
+
+
+        if (event.key === "Escape") {
+
+            closePhoto();
+
+        }
+
+
+        if (
+            event.key === "ArrowRight"
+        ) {
+
+            nextPhoto();
+
+        }
+
+
+        if (
+            event.key === "ArrowLeft"
+        ) {
+
+            previousPhoto();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   📱 SWIPE SUPPORT
+   ========================================================= */
+
+let touchStartX = 0;
+let touchStartY = 0;
+
+
+if (photoViewer) {
+
+    photoViewer.addEventListener(
+        "touchstart",
+        (event) => {
+
+            if (
+                event.touches.length !== 1
+            ) {
+
+                return;
+
+            }
+
+
+            touchStartX =
+                event.touches[0].clientX;
+
+            touchStartY =
+                event.touches[0].clientY;
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    photoViewer.addEventListener(
+        "touchend",
+        (event) => {
+
+            if (
+                event.changedTouches.length !== 1
+            ) {
+
+                return;
+
+            }
+
+
+            const touchEndX =
+                event.changedTouches[0].clientX;
+
+            const touchEndY =
+                event.changedTouches[0].clientY;
+
+
+            const differenceX =
+                touchEndX -
+                touchStartX;
+
+            const differenceY =
+                touchEndY -
+                touchStartY;
+
+
+            /* Ignore mostly vertical swipes */
+
+            if (
+                Math.abs(differenceX) <
+                Math.abs(differenceY)
+            ) {
+
+                return;
+
+            }
+
+
+            /* Minimum swipe distance */
+
+            if (
+                Math.abs(differenceX) <
+                50
+            ) {
+
+                return;
+
+            }
+
+
+            if (
+                differenceX < 0
+            ) {
+
+                nextPhoto();
+
+            } else {
+
+                previousPhoto();
+
+            }
+
+        },
+        {
+            passive: true
+        }
+    );
+
+}
+
+
+/* =========================================================
+   📸 PRELOAD NEARBY PHOTOS
+   ========================================================= */
+
+function preloadPhoto(index) {
+
+    if (
+        memories.length === 0
+    ) {
+
+        return;
+
+    }
+
+
+    const safeIndex =
+        (
+            index +
+            memories.length
+        ) %
+        memories.length;
+
+
+    const image =
+        new Image();
+
+
+    image.src =
+        memories[safeIndex].src;
+
+}
+
+
+function preloadNearbyPhotos() {
+
+    preloadPhoto(
+        currentPhoto + 1
+    );
+
+    preloadPhoto(
+        currentPhoto - 1
+    );
+
+}
+
+
+if (photoViewer) {
+
+    photoViewer.addEventListener(
+        "transitionend",
+        preloadNearbyPhotos
+    );
+
+}
+
+
+/* =========================================================
    ❤️ CLICK HEART EFFECT
-   ========================================= */
+   ========================================================= */
 
 document.addEventListener(
     "click",
     function (event) {
 
-        /*
-           Don't create click hearts when
-           pressing buttons.
-        */
-
         if (
-            event.target.tagName === "BUTTON" ||
-            event.target.closest("button")
+            event.target.closest("button") ||
+            event.target.closest("video") ||
+            event.target.closest(".photo-viewer")
         ) {
 
             return;
@@ -386,7 +927,8 @@ document.addEventListener(
             document.createElement("span");
 
 
-        heart.innerHTML = "❤️";
+        heart.innerHTML =
+            "❤️";
 
 
         heart.style.position =
@@ -413,46 +955,54 @@ document.addEventListener(
         );
 
 
-        heart.animate(
+        const animation =
+            heart.animate(
 
-            [
+                [
+                    {
+                        transform:
+                            "translate(-50%, -50%) scale(.5)",
+
+                        opacity: 1
+                    },
+
+                    {
+                        transform:
+                            "translate(-50%, -120px) scale(1.4)",
+
+                        opacity: 0
+                    }
+                ],
+
                 {
-                    transform:
-                        "translate(-50%, -50%) scale(.5)",
+                    duration: 900,
 
-                    opacity: 1
-                },
-
-                {
-                    transform:
-                        "translate(-50%, -120px) scale(1.4)",
-
-                    opacity: 0
+                    easing: "ease-out"
                 }
-            ],
 
-            {
-                duration: 900,
-                easing: "ease-out"
-            }
-
-        );
+            );
 
 
-        setTimeout(() => {
+        animation.finished
+            .then(() => {
 
-            heart.remove();
+                heart.remove();
 
-        }, 900);
+            })
+            .catch(() => {
+
+                heart.remove();
+
+            });
 
     }
 );
 
 
-/* =========================================
+/* =========================================================
    🎂 BIRTHDAY COUNTDOWN
    30 AUGUST 2026 — 12:00 AM IST
-   ========================================= */
+   ========================================================= */
 
 const birthdayTarget =
     new Date(
@@ -485,16 +1035,11 @@ let birthdayCelebrationStarted =
     false;
 
 
-/* =========================================
+/* =========================================================
    ⏳ UPDATE COUNTDOWN
-   ========================================= */
+   ========================================================= */
 
 function updateBirthdayCountdown() {
-
-    /*
-       If the countdown elements don't exist,
-       simply stop here.
-    */
 
     if (
         !countdownDays ||
@@ -513,20 +1058,25 @@ function updateBirthdayCountdown() {
 
 
     const difference =
-        birthdayTarget - now;
+        birthdayTarget -
+        now;
 
 
-    /* Birthday has arrived 🎂 */
+    if (
+        difference <= 0
+    ) {
 
-    if (difference <= 0) {
+        countdownDays.textContent =
+            "00";
 
-        countdownDays.textContent = "00";
+        countdownHours.textContent =
+            "00";
 
-        countdownHours.textContent = "00";
+        countdownMinutes.textContent =
+            "00";
 
-        countdownMinutes.textContent = "00";
-
-        countdownSeconds.textContent = "00";
+        countdownSeconds.textContent =
+            "00";
 
 
         startBirthdayCelebration();
@@ -545,25 +1095,28 @@ function updateBirthdayCountdown() {
 
     const hours =
         Math.floor(
-            (difference /
-                (1000 * 60 * 60)) %
-            24
+            (
+                difference /
+                (1000 * 60 * 60)
+            ) % 24
         );
 
 
     const minutes =
         Math.floor(
-            (difference /
-                (1000 * 60)) %
-            60
+            (
+                difference /
+                (1000 * 60)
+            ) % 60
         );
 
 
     const seconds =
         Math.floor(
-            (difference /
-                1000) %
-            60
+            (
+                difference /
+                1000
+            ) % 60
         );
 
 
@@ -585,8 +1138,6 @@ function updateBirthdayCountdown() {
 }
 
 
-/* Start countdown */
-
 updateBirthdayCountdown();
 
 
@@ -596,9 +1147,9 @@ setInterval(
 );
 
 
-/* =========================================
+/* =========================================================
    🎂 BIRTHDAY CELEBRATION
-   ========================================= */
+   ========================================================= */
 
 function startBirthdayCelebration() {
 
@@ -648,26 +1199,12 @@ function startBirthdayCelebration() {
     }
 
 
-    /*
-       IMPORTANT:
-
-       The music is NOT started here.
-
-       Music already starts when she presses
-       "Open My Heart ❤️".
-    */
-
-
-    /* Birthday hearts */
-
     setTimeout(() => {
 
         createHearts();
 
     }, 500);
 
-
-    /* Birthday fireworks */
 
     setTimeout(() => {
 
@@ -678,15 +1215,11 @@ function startBirthdayCelebration() {
 }
 
 
-/* =========================================
+/* =========================================================
    🎆 FIREWORKS
-   ========================================= */
+   ========================================================= */
 
 function startFireworks() {
-
-    /*
-       Prevent duplicate fireworks canvases.
-    */
 
     if (
         document.getElementById(
@@ -761,47 +1294,37 @@ function startFireworks() {
 
 
     const fireworks = [];
-
     const particles = [];
 
 
-    /* =====================================
-       CREATE FIREWORK
-       ===================================== */
-
     function createFirework() {
-
-        const x =
-            Math.random() *
-            canvas.width;
-
-
-        const targetY =
-            Math.random() *
-            canvas.height *
-            0.45;
-
 
         fireworks.push({
 
-            x: x,
+            x:
+                Math.random() *
+                canvas.width,
 
-            y: canvas.height,
+            y:
+                canvas.height,
 
-            targetY: targetY,
+            targetY:
+                Math.random() *
+                canvas.height *
+                0.45,
 
-            speed: 7
+            speed:
+                7
 
         });
 
     }
 
 
-    /* =====================================
-       EXPLODE FIREWORK
-       ===================================== */
-
-    function explode(x, y) {
+    function explode(
+        x,
+        y
+    ) {
 
         const emojis = [
             "❤️",
@@ -832,9 +1355,11 @@ function startFireworks() {
 
             particles.push({
 
-                x: x,
+                x:
+                    x,
 
-                y: y,
+                y:
+                    y,
 
                 vx:
                     Math.cos(angle) *
@@ -844,7 +1369,8 @@ function startFireworks() {
                     Math.sin(angle) *
                     speed,
 
-                life: 100,
+                life:
+                    100,
 
                 emoji:
                     emojis[
@@ -861,10 +1387,6 @@ function startFireworks() {
     }
 
 
-    /* =====================================
-       ANIMATION
-       ===================================== */
-
     function animate() {
 
         ctx.clearRect(
@@ -875,10 +1397,11 @@ function startFireworks() {
         );
 
 
-        /* Fireworks going upward */
-
         fireworks.forEach(
-            (firework, index) => {
+            (
+                firework,
+                index
+            ) => {
 
                 firework.y -=
                     firework.speed;
@@ -917,10 +1440,11 @@ function startFireworks() {
         );
 
 
-        /* Explosion particles */
-
         particles.forEach(
-            (particle, index) => {
+            (
+                particle,
+                index
+            ) => {
 
                 particle.x +=
                     particle.vx;
@@ -967,7 +1491,8 @@ function startFireworks() {
         );
 
 
-        ctx.globalAlpha = 1;
+        ctx.globalAlpha =
+            1;
 
 
         requestAnimationFrame(
@@ -976,8 +1501,6 @@ function startFireworks() {
 
     }
 
-
-    /* New firework every 450ms */
 
     setInterval(
         createFirework,
@@ -990,9 +1513,9 @@ function startFireworks() {
 }
 
 
-/* =========================================
-   🎵 MUSIC ERROR HELPER
-   ========================================= */
+/* =========================================================
+   🎵 MUSIC ERROR
+   ========================================================= */
 
 birthdayMusic.addEventListener(
     "error",
@@ -1010,10 +1533,47 @@ birthdayMusic.addEventListener(
 );
 
 
-/* =========================================
+/* =========================================================
+   📸 IMAGE ERROR HELPER
+   ========================================================= */
+
+document.querySelectorAll(
+    ".memory-photo img"
+).forEach(
+    (image) => {
+
+        image.addEventListener(
+            "error",
+            () => {
+
+                console.log(
+                    "❌ Could not load:",
+                    image.src
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
    💗 CONSOLE MESSAGE
-   ========================================= */
+   ========================================================= */
 
 console.log(
-    "Made with love for my Bachaaaaa ❤️"
+    "💗 Koushiki Birthday Website loaded successfully."
+);
+
+console.log(
+    `📸 ${memories.length} memories loaded.`
+);
+
+console.log(
+    "🎥 Two videos available."
+);
+
+console.log(
+    "🎵 Birthday music ready."
 );
