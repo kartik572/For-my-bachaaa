@@ -375,3 +375,326 @@ function createFirework() {
     }, 1800);
 
 }
+
+
+/* =========================================
+   🎂 KOUSHIKI'S BIRTHDAY COUNTDOWN
+   30 AUGUST 2026 — 12:00 AM IST
+   ========================================= */
+
+const birthdayTime = Date.UTC(2026, 7, 29, 18, 30, 0);
+
+// Create countdown
+const countdownBox = document.createElement("div");
+
+countdownBox.id = "birthdayCountdown";
+
+countdownBox.innerHTML = `
+    <div class="countdown-title">COUNTING DOWN TO YOUR DAY 💗</div>
+
+    <div class="countdown-time">
+        <div>
+            <span id="days">00</span>
+            <small>DAYS</small>
+        </div>
+
+        <div>
+            <span id="hours">00</span>
+            <small>HOURS</small>
+        </div>
+
+        <div>
+            <span id="minutes">00</span>
+            <small>MINUTES</small>
+        </div>
+
+        <div>
+            <span id="seconds">00</span>
+            <small>SECONDS</small>
+        </div>
+    </div>
+
+    <div class="countdown-message">
+        Until the clock strikes 12... 🎂❤️
+    </div>
+`;
+
+const openingContent = document.querySelector(".opening-content");
+
+if (openingContent) {
+    openingContent.appendChild(countdownBox);
+}
+
+
+/* =========================================
+   COUNTDOWN TIMER
+   ========================================= */
+
+function updateCountdown() {
+
+    const now = Date.now();
+    const difference = birthdayTime - now;
+
+    if (difference <= 0) {
+
+        document.getElementById("days").textContent = "00";
+        document.getElementById("hours").textContent = "00";
+        document.getElementById("minutes").textContent = "00";
+        document.getElementById("seconds").textContent = "00";
+
+        celebrateBirthday();
+
+        return;
+    }
+
+    const days = Math.floor(
+        difference / (1000 * 60 * 60 * 24)
+    );
+
+    const hours = Math.floor(
+        (difference / (1000 * 60 * 60)) % 24
+    );
+
+    const minutes = Math.floor(
+        (difference / (1000 * 60)) % 60
+    );
+
+    const seconds = Math.floor(
+        (difference / 1000) % 60
+    );
+
+    document.getElementById("days").textContent =
+        String(days).padStart(2, "0");
+
+    document.getElementById("hours").textContent =
+        String(hours).padStart(2, "0");
+
+    document.getElementById("minutes").textContent =
+        String(minutes).padStart(2, "0");
+
+    document.getElementById("seconds").textContent =
+        String(seconds).padStart(2, "0");
+}
+
+updateCountdown();
+
+setInterval(updateCountdown, 1000);
+
+
+/* =========================================
+   🎆 BIRTHDAY CELEBRATION
+   ========================================= */
+
+let birthdayCelebrated = false;
+
+function celebrateBirthday() {
+
+    if (birthdayCelebrated) return;
+
+    birthdayCelebrated = true;
+
+    countdownBox.innerHTML = `
+        <div class="birthday-reveal">
+            🎂✨
+            <h2>HAPPY BIRTHDAY</h2>
+            <h1>KOUSHIKI ❤️</h1>
+            <p>Today is YOUR day, my Bachaaaaa 💗</p>
+        </div>
+    `;
+
+    // Start music
+    const birthdayMusic = new Audio("a-fool-for-you.mp3");
+
+    birthdayMusic.loop = true;
+    birthdayMusic.volume = 0.8;
+
+    birthdayMusic.play().catch(() => {
+        console.log("Music needs a user interaction to start.");
+    });
+
+    // Start fireworks
+    startFireworks();
+
+}
+
+
+/* =========================================
+   🎆 FIREWORKS
+   ========================================= */
+
+function startFireworks() {
+
+    const canvas = document.createElement("canvas");
+
+    canvas.id = "fireworksCanvas";
+
+    canvas.style.position = "fixed";
+    canvas.style.left = "0";
+    canvas.style.top = "0";
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
+    canvas.style.pointerEvents = "none";
+    canvas.style.zIndex = "9999";
+
+    document.body.appendChild(canvas);
+
+    const ctx = canvas.getContext("2d");
+
+    function resizeCanvas() {
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+    }
+
+    resizeCanvas();
+
+    window.addEventListener("resize", resizeCanvas);
+
+    const fireworks = [];
+    const particles = [];
+
+    function createFirework() {
+
+        const x =
+            Math.random() * canvas.width;
+
+        const y =
+            Math.random() *
+            canvas.height * 0.45;
+
+        fireworks.push({
+            x: x,
+            y: canvas.height,
+            targetY: y,
+            speed: 7
+        });
+
+    }
+
+
+    function explode(x, y) {
+
+        const emojis = ["❤️", "💗", "💕", "💖", "✨"];
+
+        for (let i = 0; i < 35; i++) {
+
+            const angle =
+                Math.random() * Math.PI * 2;
+
+            const speed =
+                2 + Math.random() * 5;
+
+            particles.push({
+                x: x,
+                y: y,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed,
+                life: 100,
+                emoji:
+                    emojis[
+                        Math.floor(
+                            Math.random() * emojis.length
+                        )
+                    ]
+            });
+
+        }
+
+    }
+
+
+    function animate() {
+
+        ctx.clearRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+
+        // Fireworks going upward
+
+        fireworks.forEach((firework, index) => {
+
+            firework.y -= firework.speed;
+
+            ctx.font = "18px serif";
+
+            ctx.fillText(
+                "✨",
+                firework.x,
+                firework.y
+            );
+
+
+            if (firework.y <= firework.targetY) {
+
+                explode(
+                    firework.x,
+                    firework.y
+                );
+
+                fireworks.splice(index, 1);
+
+            }
+
+        });
+
+
+        // Explosion particles
+
+        particles.forEach((particle, index) => {
+
+            particle.x += particle.vx;
+
+            particle.y += particle.vy;
+
+            particle.vy += 0.05;
+
+            particle.life -= 1;
+
+            ctx.globalAlpha =
+                particle.life / 100;
+
+            ctx.font = "22px serif";
+
+            ctx.fillText(
+                particle.emoji,
+                particle.x,
+                particle.y
+            );
+
+
+            if (particle.life <= 0) {
+
+                particles.splice(index, 1);
+
+            }
+
+        });
+
+        ctx.globalAlpha = 1;
+
+        requestAnimationFrame(animate);
+
+    }
+
+
+    // Fireworks continuously for celebration
+
+    setInterval(() => {
+
+        createFirework();
+
+    }, 450);
+
+    animate();
+
+}
+
+
+/* =========================================
+   END 🎂
+   ========================================= */
