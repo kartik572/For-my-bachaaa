@@ -245,13 +245,15 @@ function updateBirthdayCountdown() {
     /* Birthday has arrived 🎂 */
     if (difference <= 0) {
 
-        countdownDays.textContent = "00";
-        countdownHours.textContent = "00";
-        countdownMinutes.textContent = "00";
-        countdownSeconds.textContent = "00";
+    countdownDays.textContent = "00";
+    countdownHours.textContent = "00";
+    countdownMinutes.textContent = "00";
+    countdownSeconds.textContent = "00";
 
-        return;
-    }
+    startBirthdayCelebration();
+
+    return;
+}
 
     const days = Math.floor(
         difference / (1000 * 60 * 60 * 24)
@@ -288,3 +290,88 @@ updateBirthdayCountdown();
 
 /* Update every second */
 setInterval(updateBirthdayCountdown, 1000);
+/* ================================
+   MIDNIGHT BIRTHDAY FIREWORKS 🎆
+   ================================ */
+
+let birthdayCelebrationStarted = false;
+
+function startBirthdayCelebration() {
+
+    if (birthdayCelebrationStarted) return;
+
+    birthdayCelebrationStarted = true;
+
+    /* Hide countdown */
+    const countdown = document.getElementById("birthdayCountdown");
+
+    if (countdown) {
+        countdown.style.opacity = "0";
+        countdown.style.transform = "scale(0.8)";
+    }
+
+    /* Create fireworks */
+    for (let i = 0; i < 12; i++) {
+
+        setTimeout(() => {
+            createFirework();
+        }, i * 450);
+
+    }
+
+    /* Extra hearts */
+    setTimeout(() => {
+        createHearts();
+    }, 1000);
+
+}
+
+
+/* Create one firework */
+function createFirework() {
+
+    const firework = document.createElement("div");
+
+    firework.className = "firework";
+
+    firework.style.left =
+        (15 + Math.random() * 70) + "vw";
+
+    firework.style.top =
+        (15 + Math.random() * 45) + "vh";
+
+    document.body.appendChild(firework);
+
+    const particles = 24;
+
+    for (let i = 0; i < particles; i++) {
+
+        const particle = document.createElement("span");
+
+        particle.className = "firework-particle";
+
+        const angle =
+            (Math.PI * 2 * i) / particles;
+
+        const distance =
+            60 + Math.random() * 100;
+
+        particle.style.setProperty(
+            "--x",
+            Math.cos(angle) * distance + "px"
+        );
+
+        particle.style.setProperty(
+            "--y",
+            Math.sin(angle) * distance + "px"
+        );
+
+        firework.appendChild(particle);
+
+    }
+
+    setTimeout(() => {
+        firework.remove();
+    }, 1800);
+
+}
