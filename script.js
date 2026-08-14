@@ -1,5 +1,6 @@
 /* =========================================
-   WEB 2 — FOR MY BACHAaaaa ❤️
+   💗 WEB 2 — FOR MY BACHAaaaa
+   CLEAN JAVASCRIPT
    ========================================= */
 
 
@@ -12,16 +13,26 @@ const opening = document.getElementById("opening");
 const mainContent = document.getElementById("mainContent");
 
 
-
 /* =========================================
    🎵 BACKGROUND MUSIC
    ========================================= */
 
-const loveSong = new Audio("a-fool-for-you.mp3");
+/*
+   IMPORTANT:
+   The file must be named exactly:
 
-loveSong.loop = true;
-loveSong.volume = 0.75;
+   a-fool-for-you.mp3
 
+   and must be in the same GitHub folder
+   as index.html.
+*/
+
+const birthdayMusic = new Audio("a-fool-for-you.mp3");
+
+birthdayMusic.loop = true;
+birthdayMusic.volume = 0.75;
+
+let musicStarted = false;
 
 
 /* =========================================
@@ -30,81 +41,106 @@ loveSong.volume = 0.75;
 
 if (startBtn) {
 
-    startBtn.addEventListener("click", () => {
+    startBtn.addEventListener("click", function () {
 
-        /* Start music immediately from the user's tap */
-        loveSong.play().catch(() => {
-            console.log("Music could not start automatically.");
-        });
+        /*
+           START MUSIC IMMEDIATELY.
+
+           This is intentionally inside the
+           button click so iPhone/iPad browsers
+           allow the audio to start.
+        */
+
+        if (!musicStarted) {
+
+            birthdayMusic.play()
+                .then(() => {
+
+                    musicStarted = true;
+
+                    console.log(
+                        "🎵 Music started for my Bachaaaaa ❤️"
+                    );
+
+                })
+                .catch((error) => {
+
+                    console.log(
+                        "Music could not start automatically:",
+                        error
+                    );
+
+                });
+
+        }
 
 
-        /* Change button */
+        /* Button animation */
+
         startBtn.innerHTML =
             "Opening your heart... ❤️";
 
         startBtn.disabled = true;
 
 
-        /* Small cinematic pause */
+        /* Opening screen animation */
+
+        opening.style.transition =
+            "opacity 1s ease, transform 1s ease";
+
+        opening.style.opacity = "0";
+
+        opening.style.transform =
+            "scale(1.05)";
+
+
         setTimeout(() => {
 
-            /* Hide opening screen */
-            opening.style.opacity = "0";
-            opening.style.transform =
-                "scale(1.05)";
+            opening.style.display = "none";
 
 
-            setTimeout(() => {
+            /* Show main website */
 
-                opening.style.display = "none";
+            mainContent.classList.remove("hidden");
+
+            mainContent.style.opacity = "0";
+
+            mainContent.style.transform =
+                "translateY(25px)";
 
 
-                /* Show main website */
-                mainContent.classList.remove("hidden");
+            requestAnimationFrame(() => {
 
-                mainContent.style.opacity = "0";
+                mainContent.style.transition =
+                    "opacity 1.2s ease, transform 1.2s ease";
+
+                mainContent.style.opacity = "1";
 
                 mainContent.style.transform =
-                    "translateY(20px)";
+                    "translateY(0)";
+
+            });
 
 
-                requestAnimationFrame(() => {
-
-                    mainContent.style.transition =
-                        "opacity 1.2s ease, transform 1.2s ease";
-
-                    mainContent.style.opacity = "1";
-
-                    mainContent.style.transform =
-                        "translateY(0)";
-
-                });
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
 
 
-                /* Start celebration */
-                createHearts();
+            /* Celebration hearts */
 
+            createHearts();
 
-                /* Start at top */
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-
-
-            }, 900);
-
-
-        }, 700);
+        }, 950);
 
     });
 
 }
 
 
-
 /* =========================================
-   ❤️ EXTRA FLOATING HEARTS
+   💕 FLOATING HEARTS
    ========================================= */
 
 function createHearts() {
@@ -116,10 +152,20 @@ function createHearts() {
             const heart =
                 document.createElement("div");
 
+            const heartTypes = [
+                "❤️",
+                "💗",
+                "💕",
+                "💖",
+                "💞"
+            ];
 
             heart.innerHTML =
-                ["❤️", "💗", "💕", "💖", "💞"][
-                    Math.floor(Math.random() * 5)
+                heartTypes[
+                    Math.floor(
+                        Math.random() *
+                        heartTypes.length
+                    )
                 ];
 
 
@@ -128,21 +174,24 @@ function createHearts() {
             heart.style.left =
                 Math.random() * 100 + "vw";
 
-            heart.style.bottom = "-40px";
+            heart.style.bottom =
+                "-40px";
 
             heart.style.fontSize =
                 (16 + Math.random() * 24) + "px";
 
-            heart.style.pointerEvents = "none";
+            heart.style.pointerEvents =
+                "none";
 
-            heart.style.zIndex = "20";
+            heart.style.zIndex = "999";
 
 
             document.body.appendChild(heart);
 
 
             const duration =
-                3500 + Math.random() * 3000;
+                3500 +
+                Math.random() * 3000;
 
 
             heart.animate(
@@ -151,18 +200,21 @@ function createHearts() {
                     {
                         transform:
                             "translateY(0) rotate(0deg)",
+
                         opacity: 0
                     },
 
                     {
                         transform:
                             "translateY(-50vh) rotate(20deg)",
+
                         opacity: 1
                     },
 
                     {
                         transform:
                             "translateY(-110vh) rotate(-20deg)",
+
                         opacity: 0
                     }
                 ],
@@ -189,14 +241,14 @@ function createHearts() {
 }
 
 
-
 /* =========================================
    ✨ SCROLL REVEAL
    ========================================= */
 
-const sections = document.querySelectorAll(
-    ".story, .letter, .reasons, .memories, .final"
-);
+const sections =
+    document.querySelectorAll(
+        ".story, .letter, .reasons, .memories, .final"
+    );
 
 
 const observer =
@@ -208,7 +260,8 @@ const observer =
 
                 if (entry.isIntersecting) {
 
-                    entry.target.style.opacity = "1";
+                    entry.target.style.opacity =
+                        "1";
 
                     entry.target.style.transform =
                         "translateY(0)";
@@ -220,7 +273,7 @@ const observer =
         },
 
         {
-            threshold: 0.15
+            threshold: 0.12
         }
 
     );
@@ -241,78 +294,159 @@ sections.forEach((section) => {
 });
 
 
-
 /* =========================================
-   ❤️ CLICK HEART EFFECT
+   📸 MEMORY CARD ANIMATION
    ========================================= */
 
-document.addEventListener("click", (event) => {
-
-    if (
-        event.target.tagName === "BUTTON" ||
-        event.target.closest("button")
-    ) {
-        return;
-    }
+const memoryCards =
+    document.querySelectorAll(
+        ".memory-card"
+    );
 
 
-    const heart =
-        document.createElement("span");
+memoryCards.forEach((card, index) => {
+
+    card.style.opacity = "0";
+
+    card.style.transform =
+        "translateY(35px) scale(.98)";
+
+    card.style.transition =
+        "opacity .8s ease, transform .8s ease";
+
+    card.style.transitionDelay =
+        (index % 3) * 0.12 + "s";
+
+});
 
 
-    heart.innerHTML = "❤️";
+const memoryObserver =
+    new IntersectionObserver(
 
+        (entries) => {
 
-    heart.style.position = "fixed";
+            entries.forEach((entry) => {
 
-    heart.style.left =
-        event.clientX + "px";
+                if (entry.isIntersecting) {
 
-    heart.style.top =
-        event.clientY + "px";
+                    entry.target.style.opacity =
+                        "1";
 
-    heart.style.pointerEvents = "none";
+                    entry.target.style.transform =
+                        "translateY(0) scale(1)";
 
-    heart.style.zIndex = "999";
+                    memoryObserver.unobserve(
+                        entry.target
+                    );
 
-    heart.style.fontSize = "20px";
+                }
 
+            });
 
-    document.body.appendChild(heart);
-
-
-    heart.animate(
-
-        [
-            {
-                transform:
-                    "translate(-50%, -50%) scale(.5)",
-                opacity: 1
-            },
-
-            {
-                transform:
-                    "translate(-50%, -120px) scale(1.4)",
-                opacity: 0
-            }
-        ],
+        },
 
         {
-            duration: 900,
-            easing: "ease-out"
+            threshold: 0.15
         }
 
     );
 
 
-    setTimeout(() => {
+memoryCards.forEach((card) => {
 
-        heart.remove();
-
-    }, 900);
+    memoryObserver.observe(card);
 
 });
 
+
+/* =========================================
+   ❤️ CLICK HEART EFFECT
+   ========================================= */
+
+document.addEventListener(
+    "click",
+    function (event) {
+
+        /*
+           Don't create click hearts when
+           pressing buttons.
+        */
+
+        if (
+            event.target.tagName === "BUTTON" ||
+            event.target.closest("button")
+        ) {
+
+            return;
+
+        }
+
+
+        const heart =
+            document.createElement("span");
+
+
+        heart.innerHTML = "❤️";
+
+
+        heart.style.position =
+            "fixed";
+
+        heart.style.left =
+            event.clientX + "px";
+
+        heart.style.top =
+            event.clientY + "px";
+
+        heart.style.pointerEvents =
+            "none";
+
+        heart.style.zIndex =
+            "9999";
+
+        heart.style.fontSize =
+            "20px";
+
+
+        document.body.appendChild(
+            heart
+        );
+
+
+        heart.animate(
+
+            [
+                {
+                    transform:
+                        "translate(-50%, -50%) scale(.5)",
+
+                    opacity: 1
+                },
+
+                {
+                    transform:
+                        "translate(-50%, -120px) scale(1.4)",
+
+                    opacity: 0
+                }
+            ],
+
+            {
+                duration: 900,
+                easing: "ease-out"
+            }
+
+        );
+
+
+        setTimeout(() => {
+
+            heart.remove();
+
+        }, 900);
+
+    }
+);
 
 
 /* =========================================
@@ -327,20 +461,52 @@ const birthdayTarget =
 
 
 const countdownDays =
-    document.getElementById("countdownDays");
+    document.getElementById(
+        "countdownDays"
+    );
 
 const countdownHours =
-    document.getElementById("countdownHours");
+    document.getElementById(
+        "countdownHours"
+    );
 
 const countdownMinutes =
-    document.getElementById("countdownMinutes");
+    document.getElementById(
+        "countdownMinutes"
+    );
 
 const countdownSeconds =
-    document.getElementById("countdownSeconds");
+    document.getElementById(
+        "countdownSeconds"
+    );
 
 
+let birthdayCelebrationStarted =
+    false;
+
+
+/* =========================================
+   ⏳ UPDATE COUNTDOWN
+   ========================================= */
 
 function updateBirthdayCountdown() {
+
+    /*
+       If the countdown elements don't exist,
+       simply stop here.
+    */
+
+    if (
+        !countdownDays ||
+        !countdownHours ||
+        !countdownMinutes ||
+        !countdownSeconds
+    ) {
+
+        return;
+
+    }
+
 
     const now =
         Date.now();
@@ -354,17 +520,13 @@ function updateBirthdayCountdown() {
 
     if (difference <= 0) {
 
-        if (countdownDays)
-            countdownDays.textContent = "00";
+        countdownDays.textContent = "00";
 
-        if (countdownHours)
-            countdownHours.textContent = "00";
+        countdownHours.textContent = "00";
 
-        if (countdownMinutes)
-            countdownMinutes.textContent = "00";
+        countdownMinutes.textContent = "00";
 
-        if (countdownSeconds)
-            countdownSeconds.textContent = "00";
+        countdownSeconds.textContent = "00";
 
 
         startBirthdayCelebration();
@@ -384,53 +546,49 @@ function updateBirthdayCountdown() {
     const hours =
         Math.floor(
             (difference /
-                (1000 * 60 * 60)) % 24
+                (1000 * 60 * 60)) %
+            24
         );
 
 
     const minutes =
         Math.floor(
             (difference /
-                (1000 * 60)) % 60
+                (1000 * 60)) %
+            60
         );
 
 
     const seconds =
         Math.floor(
             (difference /
-                1000) % 60
+                1000) %
+            60
         );
 
 
-    if (countdownDays)
-        countdownDays.textContent =
-            String(days).padStart(2, "0");
+    countdownDays.textContent =
+        String(days).padStart(2, "0");
 
 
-    if (countdownHours)
-        countdownHours.textContent =
-            String(hours).padStart(2, "0");
+    countdownHours.textContent =
+        String(hours).padStart(2, "0");
 
 
-    if (countdownMinutes)
-        countdownMinutes.textContent =
-            String(minutes).padStart(2, "0");
+    countdownMinutes.textContent =
+        String(minutes).padStart(2, "0");
 
 
-    if (countdownSeconds)
-        countdownSeconds.textContent =
-            String(seconds).padStart(2, "0");
+    countdownSeconds.textContent =
+        String(seconds).padStart(2, "0");
 
 }
 
 
-
-/* Update immediately */
+/* Start countdown */
 
 updateBirthdayCountdown();
 
-
-/* Update every second */
 
 setInterval(
     updateBirthdayCountdown,
@@ -438,25 +596,29 @@ setInterval(
 );
 
 
-
 /* =========================================
    🎂 BIRTHDAY CELEBRATION
    ========================================= */
 
-let birthdayCelebrationStarted =
-    false;
-
-
 function startBirthdayCelebration() {
 
-    if (birthdayCelebrationStarted)
+    if (
+        birthdayCelebrationStarted
+    ) {
+
         return;
 
+    }
 
-    birthdayCelebrationStarted = true;
+
+    birthdayCelebrationStarted =
+        true;
 
 
-    /* Hide countdown */
+    console.log(
+        "🎂 Happy Birthday Koushiki ❤️"
+    );
+
 
     const countdown =
         document.getElementById(
@@ -469,125 +631,383 @@ function startBirthdayCelebration() {
         countdown.style.transition =
             "opacity 1s ease, transform 1s ease";
 
-        countdown.style.opacity = "0";
+        countdown.style.opacity =
+            "0";
 
         countdown.style.transform =
-            "scale(0.8)";
+            "scale(.85)";
 
-    }
-
-
-    /* Keep the love song playing */
-
-    loveSong.play().catch(() => {});
-
-
-    /* Fireworks */
-
-    for (let i = 0; i < 12; i++) {
 
         setTimeout(() => {
 
-            createFirework();
+            countdown.style.display =
+                "none";
 
-        }, i * 450);
+        }, 1000);
 
     }
 
 
-    /* Extra hearts */
+    /*
+       IMPORTANT:
+
+       The music is NOT started here.
+
+       Music already starts when she presses
+       "Open My Heart ❤️".
+    */
+
+
+    /* Birthday hearts */
 
     setTimeout(() => {
 
         createHearts();
 
-    }, 1000);
+    }, 500);
+
+
+    /* Birthday fireworks */
+
+    setTimeout(() => {
+
+        startFireworks();
+
+    }, 800);
 
 }
 
 
-
 /* =========================================
-   🎆 FIREWORK
+   🎆 FIREWORKS
    ========================================= */
 
-function createFirework() {
+function startFireworks() {
 
-    const firework =
-        document.createElement("div");
+    /*
+       Prevent duplicate fireworks canvases.
+    */
+
+    if (
+        document.getElementById(
+            "fireworksCanvas"
+        )
+    ) {
+
+        return;
+
+    }
 
 
-    firework.className =
-        "firework";
+    const canvas =
+        document.createElement(
+            "canvas"
+        );
 
 
-    firework.style.left =
-        (15 + Math.random() * 70) + "vw";
+    canvas.id =
+        "fireworksCanvas";
 
 
-    firework.style.top =
-        (15 + Math.random() * 45) + "vh";
+    canvas.style.position =
+        "fixed";
+
+    canvas.style.left =
+        "0";
+
+    canvas.style.top =
+        "0";
+
+    canvas.style.width =
+        "100%";
+
+    canvas.style.height =
+        "100%";
+
+    canvas.style.pointerEvents =
+        "none";
+
+    canvas.style.zIndex =
+        "9999";
 
 
     document.body.appendChild(
-        firework
+        canvas
     );
 
 
-    const particles = 24;
+    const ctx =
+        canvas.getContext("2d");
 
 
-    for (let i = 0; i < particles; i++) {
+    function resizeCanvas() {
 
-        const particle =
-            document.createElement("span");
+        canvas.width =
+            window.innerWidth;
 
+        canvas.height =
+            window.innerHeight;
 
-        particle.className =
-            "firework-particle";
-
-
-        const angle =
-            (Math.PI * 2 * i) /
-            particles;
+    }
 
 
-        const distance =
-            60 +
-            Math.random() * 100;
+    resizeCanvas();
 
 
-        particle.style.setProperty(
-            "--x",
-            Math.cos(angle) *
-            distance +
-            "px"
+    window.addEventListener(
+        "resize",
+        resizeCanvas
+    );
+
+
+    const fireworks = [];
+
+    const particles = [];
+
+
+    /* =====================================
+       CREATE FIREWORK
+       ===================================== */
+
+    function createFirework() {
+
+        const x =
+            Math.random() *
+            canvas.width;
+
+
+        const targetY =
+            Math.random() *
+            canvas.height *
+            0.45;
+
+
+        fireworks.push({
+
+            x: x,
+
+            y: canvas.height,
+
+            targetY: targetY,
+
+            speed: 7
+
+        });
+
+    }
+
+
+    /* =====================================
+       EXPLODE FIREWORK
+       ===================================== */
+
+    function explode(x, y) {
+
+        const emojis = [
+            "❤️",
+            "💗",
+            "💕",
+            "💖",
+            "✨"
+        ];
+
+
+        for (
+            let i = 0;
+            i < 35;
+            i++
+        ) {
+
+            const angle =
+                Math.random() *
+                Math.PI *
+                2;
+
+
+            const speed =
+                2 +
+                Math.random() *
+                5;
+
+
+            particles.push({
+
+                x: x,
+
+                y: y,
+
+                vx:
+                    Math.cos(angle) *
+                    speed,
+
+                vy:
+                    Math.sin(angle) *
+                    speed,
+
+                life: 100,
+
+                emoji:
+                    emojis[
+                        Math.floor(
+                            Math.random() *
+                            emojis.length
+                        )
+                    ]
+
+            });
+
+        }
+
+    }
+
+
+    /* =====================================
+       ANIMATION
+       ===================================== */
+
+    function animate() {
+
+        ctx.clearRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
         );
 
 
-        particle.style.setProperty(
-            "--y",
-            Math.sin(angle) *
-            distance +
-            "px"
+        /* Fireworks going upward */
+
+        fireworks.forEach(
+            (firework, index) => {
+
+                firework.y -=
+                    firework.speed;
+
+
+                ctx.font =
+                    "18px serif";
+
+
+                ctx.fillText(
+                    "✨",
+                    firework.x,
+                    firework.y
+                );
+
+
+                if (
+                    firework.y <=
+                    firework.targetY
+                ) {
+
+                    explode(
+                        firework.x,
+                        firework.y
+                    );
+
+
+                    fireworks.splice(
+                        index,
+                        1
+                    );
+
+                }
+
+            }
         );
 
 
-        firework.appendChild(
-            particle
+        /* Explosion particles */
+
+        particles.forEach(
+            (particle, index) => {
+
+                particle.x +=
+                    particle.vx;
+
+                particle.y +=
+                    particle.vy;
+
+                particle.vy +=
+                    0.05;
+
+                particle.life -=
+                    1;
+
+
+                ctx.globalAlpha =
+                    particle.life /
+                    100;
+
+
+                ctx.font =
+                    "22px serif";
+
+
+                ctx.fillText(
+                    particle.emoji,
+                    particle.x,
+                    particle.y
+                );
+
+
+                if (
+                    particle.life <=
+                    0
+                ) {
+
+                    particles.splice(
+                        index,
+                        1
+                    );
+
+                }
+
+            }
+        );
+
+
+        ctx.globalAlpha = 1;
+
+
+        requestAnimationFrame(
+            animate
         );
 
     }
 
 
-    setTimeout(() => {
+    /* New firework every 450ms */
 
-        firework.remove();
+    setInterval(
+        createFirework,
+        450
+    );
 
-    }, 1800);
+
+    animate();
 
 }
 
+
+/* =========================================
+   🎵 MUSIC ERROR HELPER
+   ========================================= */
+
+birthdayMusic.addEventListener(
+    "error",
+    function () {
+
+        console.log(
+            "❌ Music file could not be loaded."
+        );
+
+        console.log(
+            "Check that a-fool-for-you.mp3 is in the same folder as index.html."
+        );
+
+    }
+);
 
 
 /* =========================================
