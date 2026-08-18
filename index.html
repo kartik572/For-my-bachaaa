@@ -11,8 +11,11 @@
 
 <body>
 
-    <!-- Floating Hearts -->
-    <div class="hearts">
+    <!-- =====================================================
+         FLOATING HEARTS
+         ===================================================== -->
+
+    <div class="hearts" aria-hidden="true">
         <span>❤️</span>
         <span>💗</span>
         <span>💕</span>
@@ -22,7 +25,10 @@
     </div>
 
 
-    <!-- Opening Screen -->
+    <!-- =====================================================
+         OPENING SCREEN
+         ===================================================== -->
+
     <section id="opening" class="screen">
 
         <div class="opening-content">
@@ -42,7 +48,7 @@
                 made only for you.
             </p>
 
-            <button id="startBtn">
+            <button id="startBtn" type="button">
                 Open My Heart ❤️
             </button>
 
@@ -51,23 +57,45 @@
     </section>
 
 
-    <!-- Main Website -->
+    <!-- =====================================================
+         MAIN WEBSITE
+         ===================================================== -->
+
     <main id="mainContent" class="hidden">
 
 
-        <!-- Birthday Hero -->
+        <!-- =================================================
+             BIRTHDAY HERO
+             ================================================= -->
+
         <section class="hero">
+
+            <div class="hero-sticker hero-sticker-1">
+                🌸
+            </div>
+
+            <div class="hero-sticker hero-sticker-2">
+                ✨
+            </div>
+
+            <div class="hero-sticker hero-sticker-3">
+                🎀
+            </div>
 
             <p class="tiny">
                 30 AUGUST ❤️
             </p>
 
 
-            <!-- Birthday Countdown -->
-            <div class="birthday-countdown" id="birthdayCountdown">
+            <!-- BIRTHDAY COUNTDOWN -->
+
+            <div
+                class="birthday-countdown"
+                id="birthdayCountdown"
+            >
 
                 <p class="countdown-title">
-                    The big day is coming...
+                    The big day is coming... 🎂
                 </p>
 
                 <div class="countdown-grid">
@@ -111,11 +139,24 @@
                 it's the day someone incredibly special was born.
             </p>
 
+            <p class="hero-kicker">
+                A whole little world made just for you. 🥹❤️
+            </p>
+
+
+            <div class="scroll-hint">
+                <span>Scroll for your surprise</span>
+                <span>↓</span>
+            </div>
+
         </section>
 
 
 
-        <!-- Our Story -->
+        <!-- =================================================
+             OUR STORY
+             ================================================= -->
+
         <section class="story">
 
             <p class="section-label">
@@ -147,13 +188,20 @@
 
                 </div>
 
+                <div class="date-sticker">
+                    💕
+                </div>
+
             </div>
 
         </section>
 
 
 
-        <!-- Love Letter -->
+        <!-- =================================================
+             LOVE LETTER
+             ================================================= -->
+
         <section class="letter">
 
             <p class="section-label">
@@ -205,7 +253,10 @@
 
 
 
-        <!-- Reasons -->
+        <!-- =================================================
+             REASONS
+             ================================================= -->
+
         <section class="reasons">
 
             <p class="section-label">
@@ -292,302 +343,1263 @@
 
 
 
-        <!-- Our Memories -->
-<section class="memories">
+        <!-- =================================================
+             MEMORY INTRO
+             ================================================= -->
 
-    <p class="section-label">
-        OUR LITTLE MEMORIES 📸
-    </p>
+        <section class="memory-intro">
 
-    <h2>
-        A little timeline of my favourite girl 💗
-    </h2>
+            <p class="section-label">
+                OUR LITTLE MEMORIES 📸
+            </p>
 
-    <p class="memories-intro">
-        Every picture holds a little piece of us.
-        Every little piece makes me love you even more. 🥹
-    </p>
+            <h2>
+                A little timeline of my favourite girl 💗
+            </h2>
 
-    <div class="memory-gallery">
+            <p>
+                29 little pieces of you.
+                29 little moments.
+                One story that means everything to me. 🥹
+            </p>
 
-        <div class="memory-card">
-            <span class="sticker">🌸</span>
-            <div class="memory-photo">
-                <img src="photo_01.jpeg" alt="Our memory 1" loading="lazy" decoding="async">
+            <div class="memory-stickers">
+                🌸 ✨ 🎀 💗 🦋
             </div>
-            <p>And this is where one of my favourite memories begins. ❤️</p>
-        </div>
 
-        <div class="memory-card">
-            <span class="sticker">💗</span>
-            <div class="memory-photo">
-                <img src="photo_02.jpeg" alt="Our memory 2" loading="lazy" decoding="async">
+        </section>
+
+
+
+        <!-- =================================================
+             PREMIUM MEMORY GALLERY
+             ================================================= -->
+
+        <section class="memories">
+
+            <div class="memory-gallery">
+
+
+                <!-- PHOTO 01 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="And this is where one of my favourite memories begins. ❤️"
+                >
+
+                    <span class="sticker">
+                        🌸
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 1"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_01.jpeg"
+                                alt="Our memory 1"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        And this is where one of my favourite
+                        memories begins. ❤️
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 02 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="Another little moment that I never want to forget. 💗"
+                >
+
+                    <span class="sticker">
+                        💗
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 2"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_02.jpeg"
+                                alt="Our memory 2"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        Another little moment that I never
+                        want to forget. 💗
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 03 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="Just you being you… and me falling for you a little more. 🥹"
+                >
+
+                    <span class="sticker">
+                        ✨
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 3"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_03.jpeg"
+                                alt="Our memory 3"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        Just you being you… and me falling
+                        for you a little more. 🥹
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 04 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="A moment I wish I could pause forever. ❤️"
+                >
+
+                    <span class="sticker">
+                        🎀
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 4"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_04.jpeg"
+                                alt="Our memory 4"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        A moment I wish I could pause forever. ❤️
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 05 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="Some memories don't need words. They just feel special. ✨"
+                >
+
+                    <span class="sticker">
+                        🌷
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 5"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_05.jpeg"
+                                alt="Our memory 5"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        Some memories don't need words.
+                        They just feel special. ✨
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 06 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="You made this moment beautiful just by being there. 💕"
+                >
+
+                    <span class="sticker">
+                        🫶
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 6"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_06.jpeg"
+                                alt="Our memory 6"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        You made this moment beautiful just
+                        by being there. 💕
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 07 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="One more picture of the girl I adore. 🫶🏻"
+                >
+
+                    <span class="sticker">
+                        💞
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 7"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_07.jpeg"
+                                alt="Our memory 7"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        One more picture of the girl I adore. 🫶🏻
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 08 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="If I could relive one moment, maybe it would be this one. 💗"
+                >
+
+                    <span class="sticker">
+                        🦋
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 8"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_08.jpeg"
+                                alt="Our memory 8"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        If I could relive one moment, maybe
+                        it would be this one. 💗
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 09 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="Little moments. Big feelings. ❤️"
+                >
+
+                    <span class="sticker">
+                        💌
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 9"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_09.jpeg"
+                                alt="Our memory 9"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        Little moments. Big feelings. ❤️
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 10 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="And somehow you keep becoming more beautiful to me. 🥹"
+                >
+
+                    <span class="sticker">
+                        🌸
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 10"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_10.jpeg"
+                                alt="Our memory 10"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        And somehow you keep becoming more
+                        beautiful to me. 🥹
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 11 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="Another chapter of our little story. 📖💗"
+                >
+
+                    <span class="sticker">
+                        🎀
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 11"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_11.jpeg"
+                                alt="Our memory 11"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        Another chapter of our little story.
+                        📖💗
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 12 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="I'd choose this memory again and again. ❤️"
+                >
+
+                    <span class="sticker">
+                        💖
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 12"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_12.jpeg"
+                                alt="Our memory 12"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        I'd choose this memory again and again.
+                        ❤️
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 13 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="Thank you for giving me so many moments worth remembering. 💕"
+                >
+
+                    <span class="sticker">
+                        🌷
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 13"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_13.jpeg"
+                                alt="Our memory 13"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        Thank you for giving me so many moments
+                        worth remembering. 💕
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 14 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="Almost at the end… but never the end of us. 🥹❤️"
+                >
+
+                    <span class="sticker">
+                        ✨
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 14"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_14.jpeg"
+                                alt="Our memory 14"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        Almost at the end… but never the end
+                        of us. 🥹❤️
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 15 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="And this little collection will always belong to you. My Bachaaaaaa. ❤️"
+                >
+
+                    <span class="sticker">
+                        💕
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 15"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_15.jpeg"
+                                alt="Our memory 15"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        And this little collection will always
+                        belong to you. My Bachaaaaaa. ❤️
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 16 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="Another little piece of our story. 💗"
+                >
+
+                    <span class="sticker">
+                        🌸
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 16"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_16.jpeg"
+                                alt="Our memory 16"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        Another little piece of our story. 💗
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 17 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="A memory I'll always keep close to my heart. ❤️"
+                >
+
+                    <span class="sticker">
+                        🦋
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 17"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_17.jpeg"
+                                alt="Our memory 17"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        A memory I'll always keep close to my
+                        heart. ❤️
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 18 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="You and me… another beautiful little moment. 🫶"
+                >
+
+                    <span class="sticker">
+                        🫶
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 18"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_18.jpeg"
+                                alt="Our memory 18"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        You and me… another beautiful little
+                        moment. 🫶
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 19 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="More memories, more reasons to smile. 💕"
+                >
+
+                    <span class="sticker">
+                        💗
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 19"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_19.jpeg"
+                                alt="Our memory 19"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        More memories, more reasons to smile.
+                        💕
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 20 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="And this is only one chapter of our story. ❤️"
+                >
+
+                    <span class="sticker">
+                        🎀
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 20"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_20.jpeg"
+                                alt="Our memory 20"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        And this is only one chapter of our
+                        story. ❤️
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 21 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="Another tiny piece of you that I want to keep forever. 💗"
+                >
+
+                    <span class="sticker">
+                        🌷
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 21"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_21.jpeg"
+                                alt="Our memory 21"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        Another tiny piece of you that I want
+                        to keep forever. 💗
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 22 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="Somehow, every picture makes this story sweeter. 🥹"
+                >
+
+                    <span class="sticker">
+                        💞
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 22"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_22.jpeg"
+                                alt="Our memory 22"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        Somehow, every picture makes this story
+                        sweeter. 🥹
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 23 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="A little moment I'll always treasure. ❤️"
+                >
+
+                    <span class="sticker">
+                        ✨
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 23"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_23.jpeg"
+                                alt="Our memory 23"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        A little moment I'll always treasure.
+                        ❤️
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 24 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="Look at you being this cute again. 🫠💗"
+                >
+
+                    <span class="sticker">
+                        🌸
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 24"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_24.jpeg"
+                                alt="Our memory 24"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        Look at you being this cute again.
+                        🫠💗
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 25 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="Another memory safely kept inside my heart. 💕"
+                >
+
+                    <span class="sticker">
+                        💌
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 25"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_25.jpeg"
+                                alt="Our memory 25"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        Another memory safely kept inside my
+                        heart. 💕
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 26 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="Us, our memories, and a million little feelings. ❤️"
+                >
+
+                    <span class="sticker">
+                        🦋
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 26"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_26.jpeg"
+                                alt="Our memory 26"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        Us, our memories, and a million little
+                        feelings. ❤️
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 27 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="I'd keep this moment forever if I could. 💗"
+                >
+
+                    <span class="sticker">
+                        🎀
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 27"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_27.jpeg"
+                                alt="Our memory 27"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        I'd keep this moment forever if I could.
+                        💗
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 28 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="One last little memory before the moving pictures. 🥹"
+                >
+
+                    <span class="sticker">
+                        🌷
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 28"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_28.jpeg"
+                                alt="Our memory 28"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        One last little memory before the moving
+                        pictures. 🥹
+                    </p>
+
+                </div>
+
+
+
+                <!-- PHOTO 29 -->
+
+                <div
+                    class="memory-card"
+                    data-caption="And if I had to choose again… I'd still choose you. Always. ❤️"
+                >
+
+                    <span class="sticker">
+                        ❤️
+                    </span>
+
+                    <button
+                        class="memory-open"
+                        type="button"
+                        aria-label="Open memory 29"
+                    >
+
+                        <div class="memory-photo">
+
+                            <img
+                                src="photo_29.jpeg"
+                                alt="Our memory 29"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        </div>
+
+                    </button>
+
+                    <p>
+                        And if I had to choose again…
+                        I'd still choose you. Always. ❤️
+                    </p>
+
+                </div>
+
+
             </div>
-            <p>Another little moment that I never want to forget. 💗</p>
-        </div>
 
-        <div class="memory-card">
-            <span class="sticker">✨</span>
-            <div class="memory-photo">
-                <img src="photo_03.jpeg" alt="Our memory 3" loading="lazy" decoding="async">
+        </section>
+
+
+
+        <!-- =================================================
+             VIDEOS
+             ================================================= -->
+
+        <section class="memory-video">
+
+            <p class="section-label">
+                ONE MORE THING 🎥
+            </p>
+
+            <h2>
+                Some memories should move 💗
+            </h2>
+
+            <p>
+                Because pictures can hold a memory,
+                but videos can bring it back to life.
+            </p>
+
+
+            <div class="video-card">
+
+                <video
+                    controls
+                    playsinline
+                    preload="metadata"
+                >
+
+                    <source
+                        src="video_01.MOV"
+                        type="video/quicktime"
+                    >
+
+                    Your browser does not support this video.
+
+                </video>
+
+                <div class="video-label">
+                    A little moving memory of you. 💗
+                </div>
+
             </div>
-            <p>Just you being you… and me falling for you a little more. 🥹</p>
-        </div>
 
-        <div class="memory-card">
-            <span class="sticker">🎀</span>
-            <div class="memory-photo">
-                <img src="photo_04.jpeg" alt="Our memory 4" loading="lazy" decoding="async">
+
+            <div class="video-card">
+
+                <video
+                    controls
+                    playsinline
+                    preload="metadata"
+                >
+
+                    <source
+                        src="video_02.mp4"
+                        type="video/mp4"
+                    >
+
+                    Your browser does not support this video.
+
+                </video>
+
+                <div class="video-label">
+                    And one more memory I never want to forget. ❤️
+                </div>
+
             </div>
-            <p>A moment I wish I could pause forever. ❤️</p>
-        </div>
 
-        <div class="memory-card">
-            <span class="sticker">🌷</span>
-            <div class="memory-photo">
-                <img src="photo_05.jpeg" alt="Our memory 5" loading="lazy" decoding="async">
-            </div>
-            <p>Some memories don't need words. They just feel special. ✨</p>
-        </div>
-
-        <div class="memory-card">
-            <span class="sticker">🫶</span>
-            <div class="memory-photo">
-                <img src="photo_06.jpeg" alt="Our memory 6" loading="lazy" decoding="async">
-            </div>
-            <p>You made this moment beautiful just by being there. 💕</p>
-        </div>
-
-        <div class="memory-card">
-            <span class="sticker">💞</span>
-            <div class="memory-photo">
-                <img src="photo_07.jpeg" alt="Our memory 7" loading="lazy" decoding="async">
-            </div>
-            <p>One more picture of the girl I adore. 🫶🏻</p>
-        </div>
-
-        <div class="memory-card">
-            <span class="sticker">🦋</span>
-            <div class="memory-photo">
-                <img src="photo_08.jpeg" alt="Our memory 8" loading="lazy" decoding="async">
-            </div>
-            <p>If I could relive one moment, maybe it would be this one. 💗</p>
-        </div>
-
-        <div class="memory-card">
-            <span class="sticker">💌</span>
-            <div class="memory-photo">
-                <img src="photo_09.jpeg" alt="Our memory 9" loading="lazy" decoding="async">
-            </div>
-            <p>Little moments. Big feelings. ❤️</p>
-        </div>
-
-        <div class="memory-card">
-            <span class="sticker">🌸</span>
-            <div class="memory-photo">
-                <img src="photo_10.jpeg" alt="Our memory 10" loading="lazy" decoding="async">
-            </div>
-            <p>And somehow you keep becoming more beautiful to me. 🥹</p>
-        </div>
-
-        <div class="memory-card">
-            <span class="sticker">🎀</span>
-            <div class="memory-photo">
-                <img src="photo_11.jpeg" alt="Our memory 11" loading="lazy" decoding="async">
-            </div>
-            <p>Another chapter of our little story. 📖💗</p>
-        </div>
-
-        <div class="memory-card">
-            <span class="sticker">💖</span>
-            <div class="memory-photo">
-                <img src="photo_12.jpeg" alt="Our memory 12" loading="lazy" decoding="async">
-            </div>
-            <p>I'd choose this memory again and again. ❤️</p>
-        </div>
-
-        <div class="memory-card">
-            <span class="sticker">🌷</span>
-            <div class="memory-photo">
-                <img src="photo_13.jpeg" alt="Our memory 13" loading="lazy" decoding="async">
-            </div>
-            <p>Thank you for giving me so many moments worth remembering. 💕</p>
-        </div>
-
-        <div class="memory-card">
-            <span class="sticker">✨</span>
-            <div class="memory-photo">
-                <img src="photo_14.jpeg" alt="Our memory 14" loading="lazy" decoding="async">
-            </div>
-            <p>Almost at the end… but never the end of us. 🥹❤️</p>
-        </div>
-
-        <div class="memory-card">
-            <span class="sticker">💕</span>
-            <div class="memory-photo">
-                <img src="photo_15.jpeg" alt="Our memory 15" loading="lazy" decoding="async">
-            </div>
-            <p>And this little collection will always belong to you. My Bachaaaaaa. ❤️</p>
-        </div>
-
-        <div class="memory-card">
-            <span class="sticker">🌸</span>
-            <div class="memory-photo">
-                <img src="photo_16.jpeg" alt="Our memory 16" loading="lazy" decoding="async">
-            </div>
-            <p>Another little piece of our story. 💗</p>
-        </div>
-
-        <div class="memory-card">
-            <span class="sticker">🦋</span>
-            <div class="memory-photo">
-                <img src="photo_17.jpeg" alt="Our memory 17" loading="lazy" decoding="async">
-            </div>
-            <p>A memory I'll always keep close to my heart. ❤️</p>
-        </div>
-
-        <div class="memory-card">
-            <span class="sticker">🫶</span>
-            <div class="memory-photo">
-                <img src="photo_18.jpeg" alt="Our memory 18" loading="lazy" decoding="async">
-            </div>
-            <p>You and me… another beautiful little moment. 🫶</p>
-        </div>
-
-        <div class="memory-card">
-            <span class="sticker">💗</span>
-            <div class="memory-photo">
-                <img src="photo_19.jpeg" alt="Our memory 19" loading="lazy" decoding="async">
-            </div>
-            <p>More memories, more reasons to smile. 💕</p>
-        </div>
-
-        <div class="memory-card">
-            <span class="sticker">🎀</span>
-            <div class="memory-photo">
-                 <img src="photo_20.jpeg" alt="Our memory 20" loading="lazy" decoding="async">  
-            </div>
-            <p>And this is only one chapter of our story. ❤️</p>
-        </div>
-
-        <div class="memory-card">
-            <span class="sticker">🌷</span>
-            <div class="memory-photo">
-                <img src="photo_21.jpeg" alt="Our memory 21" loading="lazy" decoding="async">
-            </div>
-            <p>Another tiny piece of you that I want to keep forever. 💗</p>
-        </div>
-
-        <div class="memory-card">
-            <span class="sticker">💞</span>
-            <div class="memory-photo">
-                <img src="photo_22.jpeg" alt="Our memory 22" loading="lazy" decoding="async">
-            </div>
-            <p>Somehow, every picture makes this story sweeter. 🥹</p>
-        </div>
-
-        <div class="memory-card">
-            <span class="sticker">✨</span>
-            <div class="memory-photo">
-                <img src="photo_23.jpeg" alt="Our memory 23" loading="lazy" decoding="async">
-            </div>
-            <p>A little moment I'll always treasure. ❤️</p>
-        </div>
-
-        <div class="memory-card">
-            <span class="sticker">🌸</span>
-            <div class="memory-photo">
-                <img src="photo_24.jpeg" alt="Our memory 24" loading="lazy" decoding="async">
-            </div>
-            <p>Look at you being this cute again. 🫠💗</p>
-        </div>
-
-        <div class="memory-card">
-            <span class="sticker">💌</span>
-            <div class="memory-photo">
-                <img src="photo_25.jpeg" alt="Our memory 25" loading="lazy" decoding="async">
-            </div>
-            <p>Another memory safely kept inside my heart. 💕</p>
-        </div>
-
-        <div class="memory-card">
-            <span class="sticker">🦋</span>
-            <div class="memory-photo">
-                <img src="photo_26.jpeg" alt="Our memory 26" loading="lazy" decoding="async">
-            </div>
-            <p>Us, our memories, and a million little feelings. ❤️</p>
-        </div>
-
-        <div class="memory-card">
-            <span class="sticker">🎀</span>
-            <div class="memory-photo">
-                <img src="photo_27.jpeg" alt="Our memory 27" loading="lazy" decoding="async">
-            </div>
-            <p>I'd keep this moment forever if I could. 💗</p>
-        </div>
-
-        <div class="memory-card">
-            <span class="sticker">🌷</span>
-            <div class="memory-photo">
-                <img src="photo_28.jpeg" alt="Our memory 28" loading="lazy" decoding="async">
-            </div>
-            <p>One last little memory before the moving pictures. 🥹</p>
-        </div>
-
-        <div class="memory-card">
-            <span class="sticker">❤️</span>
-            <div class="memory-photo">
-                <img src="photo_29.jpeg" alt="Our memory 29" loading="lazy" decoding="async">
-            </div>
-            <p>And if I had to choose again… I'd still choose you. Always. ❤️</p>
-        </div>
-
-    </div>
-
-</section>
+        </section>
 
 
-<!-- Videos -->
-<section class="memory-video">
 
-    <p class="section-label">
-        ONE MORE THING 🎥
-    </p>
+        <!-- =================================================
+             FINAL SURPRISE
+             ================================================= -->
 
-    <h2>
-        Some memories should move 💗
-    </h2>
-
-    <p>
-        Because pictures can hold a memory,
-        but videos can bring it back to life.
-    </p>
-
-    <div class="video-card">
-
-        <video controls playsinline preload="metadata">
-            <source src="video_01.MOV" type="video/quicktime">
-            Your browser does not support this video.
-        </video>
-
-    </div>
-
-    <div class="video-card">
-
-        <video controls playsinline preload="metadata">
-            <source src="video_02.mp4" type="video/mp4">
-            Your browser does not support this video.
-        </video>
-
-    </div>
-
-</section>
-        <!-- Final Surprise -->
         <section class="final">
+
+            <div class="final-stickers">
+                🌸 ✨ 💗 ✨ 🌸
+            </div>
 
             <div class="final-heart">
                 ❤️
             </div>
+
+            <p class="section-label">
+                ONE LAST THING...
+            </p>
 
             <h2>
                 And finally...
@@ -613,7 +1625,104 @@
 
 
 
-    <!-- JavaScript -->
+    <!-- =====================================================
+         FULL SCREEN PHOTO VIEWER
+         ===================================================== -->
+
+    <div
+        id="photoViewer"
+        class="photo-viewer"
+        aria-hidden="true"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Photo viewer"
+    >
+
+        <button
+            id="viewerClose"
+            class="viewer-close"
+            type="button"
+            aria-label="Close photo viewer"
+        >
+            ×
+        </button>
+
+
+        <button
+            id="viewerPrev"
+            class="viewer-arrow viewer-prev"
+            type="button"
+            aria-label="Previous photo"
+        >
+            ‹
+        </button>
+
+
+        <div class="viewer-content">
+
+            <div class="viewer-sticker">
+                💗
+            </div>
+
+            <img
+                id="viewerImage"
+                src=""
+                alt=""
+            >
+
+            <div class="viewer-caption">
+
+                <span id="viewerCounter">
+                    01 / 29
+                </span>
+
+                <p id="viewerText">
+                    A beautiful memory. ❤️
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <button
+            id="viewerNext"
+            class="viewer-arrow viewer-next"
+            type="button"
+            aria-label="Next photo"
+        >
+            ›
+        </button>
+
+
+        <p class="viewer-hint">
+            Swipe • Tap arrows • Press Esc to close
+        </p>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         MUSIC BUTTON
+         ===================================================== -->
+
+    <button
+        id="musicToggle"
+        class="music-toggle"
+        type="button"
+        aria-label="Toggle birthday music"
+        aria-pressed="false"
+    >
+        🔇
+    </button>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
     <script src="script.js"></script>
 
 </body>
