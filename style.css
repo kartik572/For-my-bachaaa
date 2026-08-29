@@ -1240,7 +1240,7 @@ section {
    20 — REDUCED MOTION
    ========================================================= */
 
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce) {g
 
     *,
     *::before,
@@ -1251,3 +1251,459 @@ section {
         transition-duration: 0.01ms !important;
     }
 }
+/* =========================================================
+   WEB 2 — FINAL ORGANIZATION FIX
+   DO NOT DELETE THE CSS ABOVE
+   ========================================================= */
+
+/* ---------- SHARED SECTION LAYOUT ---------- */
+
+.reasons,
+.memory-intro,
+.memories {
+    position: relative;
+    z-index: 1;
+    width: min(1180px, calc(100% - 48px));
+    margin: 0 auto;
+}
+
+.reasons {
+    padding: 130px 0 110px;
+}
+
+.memory-intro {
+    padding: 120px 0 70px;
+    text-align: center;
+}
+
+.memories {
+    padding: 0 0 140px;
+}
+
+
+/* ---------- REASONS ---------- */
+
+.reasons .section-label,
+.memory-intro .section-label {
+    color: var(--pink);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+}
+
+.reasons > h2,
+.memory-intro > h2 {
+    margin: 0 0 45px;
+    color: var(--white);
+    font-family: var(--display);
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-weight: 500;
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+}
+
+.memory-intro > h2 {
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.memory-intro > p:not(.section-label) {
+    max-width: 650px;
+    margin: 0 auto;
+    color: #bdb0b7;
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    line-height: 1.7;
+}
+
+
+/* ---------- REASON CARDS ---------- */
+
+.reason-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.reason-card {
+    position: relative;
+    min-height: 280px;
+    padding: 34px 30px;
+    border: 1px solid rgba(255, 210, 225, 0.12);
+    border-radius: 24px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.075),
+            rgba(255,255,255,0.025)
+        );
+    box-shadow: 0 25px 60px rgba(0,0,0,0.18);
+    backdrop-filter: blur(18px);
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        background 0.35s ease;
+}
+
+.reason-card:hover {
+    transform: translateY(-7px);
+    border-color: rgba(255, 190, 210, 0.3);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.10),
+            rgba(255,255,255,0.035)
+        );
+}
+
+.reason-card > span {
+    display: block;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.reason-card h3 {
+    margin-bottom: 14px;
+    color: var(--white);
+    font-family: var(--display);
+    font-size: 1.7rem;
+    font-weight: 500;
+}
+
+.reason-card p {
+    color: #b9abb2;
+    font-family: var(--serif);
+    font-size: 1.08rem;
+    line-height: 1.65;
+}
+
+
+/* ---------- MEMORY INTRO ---------- */
+
+.memory-stickers {
+    margin-top: 28px;
+    color: var(--pink-light);
+    font-size: 1.25rem;
+    letter-spacing: 0.5em;
+    opacity: 0.75;
+}
+
+
+/* ---------- MEMORY GALLERY ---------- */
+
+.memory-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+    margin-top: 25px;
+}
+
+
+/* ---------- MEMORY CARD ---------- */
+
+.memory-card {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid rgba(255, 210, 225, 0.12);
+    border-radius: 24px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.065),
+            rgba(255,255,255,0.025)
+        );
+
+    box-shadow: 0 25px 65px rgba(0,0,0,0.22);
+    isolation: isolate;
+
+    transition:
+        transform 0.4s ease,
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.memory-card:hover {
+    border-color: rgba(255, 190, 210, 0.3);
+    box-shadow: 0 35px 80px rgba(0,0,0,0.32);
+}
+
+
+/* ---------- PHOTO AREA ---------- */
+
+.memory-open {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.memory-photo {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: #191219;
+}
+
+.memory-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+
+    transition:
+        transform 0.7s cubic-bezier(.2,.8,.2,1),
+        filter 0.5s ease;
+}
+
+.memory-card:hover img {
+    transform: scale(1.045);
+    filter: saturate(1.08);
+}
+
+
+/* ---------- IMAGE NUMBER ---------- */
+
+.memory-card::before {
+    content: "";
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 5;
+
+    width: 34px;
+    height: 34px;
+
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 50%;
+
+    background: rgba(15,10,15,0.55);
+    backdrop-filter: blur(10px);
+}
+
+
+/* ---------- STICKER ---------- */
+
+.memory-card .sticker {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    z-index: 6;
+
+    display: grid;
+    place-items: center;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+    background: rgba(20,12,18,0.55);
+    border: 1px solid rgba(255,220,230,0.2);
+
+    backdrop-filter: blur(10px);
+
+    font-size: 1rem;
+}
+
+
+/* ---------- CAPTION ---------- */
+
+.memory-card > p {
+    position: relative;
+    z-index: 2;
+
+    margin: 0;
+    padding: 22px 24px 26px;
+
+    color: #c9bbc2;
+
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    line-height: 1.55;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,0.025),
+            rgba(255,255,255,0.01)
+        );
+}
+
+
+/* ---------- REMOVE OLD MASONRY BEHAVIOUR ---------- */
+
+.card-large,
+.card-wide,
+.card-tall {
+    grid-column: auto;
+    grid-row: auto;
+}
+
+
+/* ---------- IMAGE ERROR ---------- */
+
+.memory-card.image-error .memory-photo::after {
+    content: "Memory unavailable ❤️";
+    position: absolute;
+    inset: 0;
+
+    display: grid;
+    place-items: center;
+
+    color: #c9bbc2;
+    font-family: var(--serif);
+    font-size: 1.1rem;
+
+    background: #191219;
+}
+
+
+/* =========================================================
+   MOBILE / TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .reason-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .memory-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .reasons,
+    .memory-intro,
+    .memories {
+        width: min(100% - 32px, 560px);
+    }
+
+    .reasons {
+        padding: 90px 0 80px;
+    }
+
+    .memory-intro {
+        padding: 85px 0 45px;
+    }
+
+    .memories {
+        padding-bottom: 90px;
+    }
+
+    .reasons > h2,
+    .memory-intro > h2 {
+        font-size: clamp(2.5rem, 12vw, 4rem);
+        margin-bottom: 32px;
+    }
+
+    .reason-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .reason-card {
+        min-height: auto;
+        padding: 28px 25px;
+    }
+
+    .reason-card > span {
+        margin-bottom: 20px;
+    }
+
+    .memory-gallery {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .memory-photo {
+        aspect-ratio: 4 / 5;
+    }
+
+    .memory-card > p {
+        padding: 18px 20px 22px;
+        font-size: 1rem;
+    }
+
+    .memory-stickers {
+        font-size: 1rem;
+        letter-spacing: 0.3em;
+    }
+}
+
+
+/* =========================================================
+   EXTRA PREMIUM POLISH
+   ========================================================= */
+
+.reasons::before,
+.memory-intro::before {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+
+    background: radial-gradient(
+        circle,
+        rgba(244,169,188,0.08),
+        transparent 68%
+    );
+
+    filter: blur(20px);
+}
+
+.reasons::before {
+    top: 0;
+    left: -180px;
+}
+
+.memory-intro::before {
+    right: -180px;
+    top: 20%;
+}
+
+
+/* Clean section spacing */
+
+.reasons + .memory-intro {
+    border-top: 1px solid rgba(255,220,230,0.06);
+}
+
+
+/* Make buttons inherit the premium typography */
+
+.memory-open,
+.reason-card,
+.memory-card {
+    font-family: inherit;
+}
+
+
+/* Prevent accidental white browser backgrounds */
+
+.memory-open:focus-visible {
+    outline: 2px solid var(--pink);
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   END FINAL FIX
+   ========================================================= */
